@@ -1,6 +1,6 @@
 FROM ubuntu:14.04
 
-ENV PARITY_DEB_URL=https://github.com/agriessel/parity/releases/download/v1.5.0/parity_1.5.0_amd64.deb
+ENV PARITY_DEB_URL=http://d1h4xl4cr1h0mo.cloudfront.net/v1.5.7/x86_64-unknown-linux-gnu/parity_1.5.7_amd64.deb
 
 # install tools and dependencies
 RUN apt-get update
@@ -12,11 +12,11 @@ RUN dpkg -i /tmp/parity.deb
 RUN rm /tmp/parity.deb
 
 #Configure keystore
-RUN mkdir -p /root/.parity/keys
-COPY key.json /root/.parity/keys/
+RUN mkdir -p /root/.parity/keys/DevelopmentChain/
+COPY key.json /root/.parity/keys/DevelopmentChain/
 COPY key.pass /root/
 COPY chain.json /root/
 
 EXPOSE 8545 
 
-ENTRYPOINT ["parity", "--chain", "/root/chain.json", "--author", "0x133e5245e3e5ab3f65e73120b34cc29f0f7ba504", "--unlock", "0x133e5245e3e5ab3f65e73120b34cc29f0f7ba504", "--password", "/root/key.pass", "--rpccorsdomain", "*", "--jsonrpc-interface", "all", "--jsonrpc-hosts", "all", "--no-dapps", "--engine-signer","0x133e5245e3e5ab3f65e73120b34cc29f0f7ba504"]
+ENTRYPOINT ["parity", "--chain", "/root/chain.json", "--author", "0x2badd6b087248952a862704289ab095aaff50cc5", "--unlock", "0x2badd6b087248952a862704289ab095aaff50cc5", "--password", "/root/key.pass", "--rpccorsdomain", "*", "--jsonrpc-interface", "all", "--jsonrpc-hosts", "all", "--no-dapps", "--engine-signer","0x2badd6b087248952a862704289ab095aaff50cc5","--keys-path","/root/.parity/keys/"]
