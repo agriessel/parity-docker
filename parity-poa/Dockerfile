@@ -1,6 +1,6 @@
 FROM ubuntu:14.04
 
-ENV PARITY_DEB_URL=http://d1h4xl4cr1h0mo.cloudfront.net/v1.5.7/x86_64-unknown-linux-gnu/parity_1.5.7_amd64.deb
+ENV PARITY_DEB_URL=http://d1h4xl4cr1h0mo.cloudfront.net/v1.6.3/x86_64-unknown-linux-gnu/parity_1.6.3_amd64.deb
 
 # install tools and dependencies
 RUN apt-get update
